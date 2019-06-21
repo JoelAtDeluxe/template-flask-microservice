@@ -1,0 +1,14 @@
+FROM python:3.7
+
+# These steps should basically never change
+WORKDIR /app
+
+# Copy in and build libraries (infrequent changes here)
+COPY dist/requirements.txt .
+RUN pip install -r requirements.txt
+
+ENV FLASK_APP wsgi.py
+ENV FLASK_DEBUG 1
+
+EXPOSE 80
+CMD ["flask", "run", "--host=0.0.0.0", "--port=80"]
