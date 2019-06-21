@@ -1,0 +1,41 @@
+openapi: 3.0.1
+info:
+  title: Generic Flask App
+  description: ""
+  version: 1.0.0
+tags:
+  - name: compliance
+paths:
+  /about:
+    get:
+      tags:
+        - compliance
+      summary: Health + version check
+      responses:
+        200:
+          description: "Success"
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthCheck'
+components:
+  schemas:
+    HealthCheck:
+      type: object
+      properties:
+        version: 
+          type: string
+          example: "0.1.0"
+          description: The current deployed versoin, as determined by the APP_VERSION environment variable
+    InvalidArgument:
+      type: object
+      properties:
+        error:
+          type: string
+          description: the error message for this error
+        expected:
+          type: string
+          description: What an expected value looks like
+        got:
+          type: string
+          description: what the actual received value was
