@@ -1,0 +1,17 @@
+
+# IDE stuff
+.vscode/
+
+# Release/build stuff
+dist/
+
+# Docker stuff
+_volumes/
+
+# Secret stuff
+.env
+
+# Python stuff
+*.pytest_cache
+*.pyc
+*/__pycache__
