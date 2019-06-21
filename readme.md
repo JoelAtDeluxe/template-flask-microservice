@@ -90,6 +90,20 @@ These 3 ways are roughly equivalent. The `make` version will build and launch a 
     └── wsgi.py                    # Entry point when running with gunicorn
 ```
 
+### Quick Primer on Pipenv
+
+Pipenv is basically a wrapper around virtualenv. Pipenv works by basically setting up a new shell session. While you are in that shell session, all of the environment values from the .env file are available as actual environment variables, and the `python` command plus the dependencies are specific to this shell. Typical usage boils down to these commands:
+
+* `pipenv --three` or `pipenv --two` create new projects with a python3 / python2 runtime, respectively. Alternative actions to do something similar also work
+* `pipenv shell` enters the virtual environment
+* `pipenv install` installs all of the dependencies needed for this project
+* `pipenv install <x>` installs a new dependency for this project.
+* `pipenv run <x>` runs an action as if the pipenv environment was active. Useful if you want to just do something quickly
+
+Finally, while in the pipenv shell, you can exit via `exit`
+
+You can find out more about pipenv [here](https://docs.pipenv.org/en/latest/)
+
 ### TODO List
 
 There are a few things that need to be added to make this project more complete. In no particular order:
