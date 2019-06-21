@@ -27,6 +27,7 @@ setup:
 	echo "Also, this should not be run as root"
 	pip install --user pipenv
 	pipenv install
+	cp .env_template .env
 
 .PHONY: local_docker
 local_docker: build
@@ -36,3 +37,7 @@ local_docker: build
 run: build
 	sudo docker-compose build
 	sudo docker-compose up
+
+.PHONY: tree
+tree:
+	tree -a -I '.git|dist|.vscode|__pycache__|__init__.py'
