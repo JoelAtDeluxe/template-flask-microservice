@@ -1,4 +1,4 @@
-from flask import jsonify, Blueprint, Response
+from flask import jsonify, Blueprint, Response, g, current_app
 import traceback
 from typing import Dict, Any
 
@@ -21,8 +21,26 @@ class InvalidArgument(BaseException):
         self.expected: str = expected
 
 
+class ServerErrorException(BaseException):
+    def __init__(self, exc):
+        super().__init__(500)
+        self.error = str(exc)
+        tb = traceback.format_exc().replace('\n', '>>>')
+        if hasattr(g, '_request_state'):
+            logger = g._request_state.req_log
+        else:
+            logger = current_app.config[STATE_NAME].logger
+
+        logger("Unexpected exception", traceback=tb)
+
+
 @bp.app_errorhandler(InvalidArgument)
 def handle_generic_error(err: BaseException) -> Response:
     resp = jsonify(err.to_dict())
     resp.status_code = err.status_code
     return resp
+
+
+@bp.app_errorhandler(500)
+def handle_500_response(exc):
+    return handle_generic_error(ServerErrorException(exc))
