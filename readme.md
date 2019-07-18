@@ -26,12 +26,20 @@ Project Features:
     * Unversioned api features to aid in development/issue diagnosis
   * Swagger/OpenAPI docs
   * Structured Logging
-  * Ability to turn of flask logging, if so desired (may be desirable if consistent logging is needed throughout an application)
+  * Ability to turn off flask logging, if so desired (may be desirable if consistent logging is needed throughout an application)
   * Unit testing via pytest
     * Though actual unit tests are missing presently
   * docstring testing
     * Though actual docstrings are missing presently
   * Reading configuration via environment variables
+
+Project _Lacks_:
+
+* Actual unit tests, actual docstring tests. These are simple enough to add, but not especially relevant here
+* Database integration. This varies and, obviously, requires a database to be present.
+* Kubernetes deployment yamls
+* Authentication/Authorization, as it is assumed that other services will provide either necessary component or do the auth work itself
+* Websockets (probably best to use a different framework, such as aiohttp) and other similar "niche" technologies
 
 ## Development Overview
 
@@ -47,13 +55,14 @@ Project Features:
 ### Recommended Environment
 
 * Linux
-  * Though OSX should be equally fine
-* Visual Studio Code with the python plugin
-  * PyCharm / Intellij IDEA should be equally fine (maybe even better than vscode)
+  * Though OSX should be equally fine.
+* IDE
+  * [Free] Visual Studio Code with the python plugin
+  * [Pay] PyCharm / Intellij IDEA should be equally fine (maybe even better than vscode)
 
 ### First Run
 
-To start, it may be easiest to run the `make setup` target, which will install a user pipenv version, install the pipenv dependencies for this project, and create a .env file. You will wnat to update the .env file with any additional private configurations necessary for your local testing.
+To start, it may be easiest to run the `make setup` target, which will install a user pipenv version, install the pipenv dependencies for this project, and create a .env file. You will want to update the .env file with any additional private configurations necessary for your local testing.
 
 To test out the server, you can run `make run`. A few alternatives exist:
 
@@ -78,9 +87,9 @@ These 3 ways are roughly equivalent. The `make` version will build and launch a 
 ├── readme.md                      # This file!
 ├── dist                           # Where the "release" version of this project goes
 └── src                            # All of the project source code
-    ├── constants.py
+    ├── constants.py               # Location for global constants, such as dictionary keys
     ├── main.py                    # Dev Entrypoint/logic for starting up the server
-    ├── project_config.py          # environment variables configuration
+    ├── project_config.py          # handles environment variables configuration
     ├── routes                     # Location for all endpoints + their logic
     │   ├── compliance.py          # Unversioned / microservice-friendly routes
     │   ├── custom_exceptions.py   # Common exceptions for all routes
@@ -136,7 +145,7 @@ Dependency management is an important concept in any project. Older python proje
 
 #### What's with the project structure
 
-Other than a directory named `src`, this is apretty common structure. Python projects "like" to be pretty flat. However, some project structure -- in particular routing -- really benefit from some hierarchy / namespacing. The rest is merely preference. A more complex application might warrant a more complex structure. A smaller project might warant a cleaner/tighter structure with fewer files.
+Other than a directory named `src`, this is a pretty common structure. Idiomatic Python projects tend to be pretty flat. However, some project structure -- in particular routing -- really benefit from some hierarchy / namespacing. The rest is merely preference. A more complex application might warrant a more complex structure. A smaller project might warant a cleaner/tighter structure with fewer files.
 
 #### Why Make
 
