@@ -1,6 +1,6 @@
 # Flask Microservice Example
 
-This project represents one way of structuring a (python 3) flask application.
+This project represents one way of structuring a (python 3) flask application. Note that some of these decisions are subjective and may not fit your needs exactly. Regardless, this can be helpful as a starter project for people new to microservices, or new to flask, as it provides some "batteries included" approaches to solving basic problems.
 
 ## Overview
 
@@ -19,7 +19,7 @@ Project Features:
   * Makefile
     * A place to keep the many simple, but repetative tasks associated with building/testing this project
   * .env / .env_template
-    * A place to store local configuration details. Works especially well with pipenv, which will auto-load the environment variables when entering the pipenv shell 
+    * A place to store local configuration details. Works especially well with pipenv, which will auto-load the environment variables when entering the pipenv shell
 * Code features
   * Simple flask routing, Including...
     * Versioned api starting point
@@ -76,6 +76,7 @@ These 3 ways are roughly equivalent. The `make` version will build and launch a 
 ├── Pipfile                        # Version/selection logic for grabbing dependencies
 ├── Pipfile.lock                   # Version/hash information for all dependencies
 ├── readme.md                      # This file!
+├── dist                           # Where the "release" version of this project goes
 └── src                            # All of the project source code
     ├── constants.py
     ├── main.py                    # Dev Entrypoint/logic for starting up the server
@@ -143,7 +144,7 @@ Mainly because it works, and it's pretty straight forward. There are some gotcha
 
 ## Credits
 
-| Person          | Role              | Contact             | Notes |
-| --------------- | ----------------- | ------------------- | ----- |
-| Joel Smith      | Primary Developer | @Joel Smith (slack) |       |
-| Your Name Here! |                   |                     |       |
+| Person            | Role              | Contact                  | Notes |
+| ----------------- | ----------------- | ------------------------ | ----- |
+| Joel Smith        | Primary Developer | joel.smith@originate.com |       |
+| _Your Name Here!_ |                   |                          |       |
